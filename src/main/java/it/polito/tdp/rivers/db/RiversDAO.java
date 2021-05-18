@@ -3,6 +3,7 @@ package it.polito.tdp.rivers.db;
 import java.util.LinkedList;
 import java.util.List;
 
+import it.polito.tdp.model.Measurements;
 import it.polito.tdp.rivers.model.River;
 
 import java.sql.Connection;
@@ -36,4 +37,45 @@ public class RiversDAO {
 
 		return rivers;
 	}
+
+	public Measurements getMeasurementsInfo(River r) {
+		final String sql = "SELECT day, flow "
+							+ "FROM flow "
+							+ "WHERE river = ? "
+							+ "ORDER BY day";
+		
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+			st.setInt(1, r.getId());
+			
+			ResultSet res = st.executeQuery();
+			
+			Measurements m = new Measurements(r, null, null, 0, 0);
+			
+			if(res.last())
+				m.setEndDate(res.getDate("day").toLocalDate());
+			if(res.first())
+				m.setStartDate(res.getDate("day").toLocalDate());		
+			
+			int n = 1;
+			float s = 0;
+			
+			while (res.next()) {
+				n++;
+				s += res.getFloat("flow");
+			}
+			m.setNumMeasurements(n);
+			m.setfMed(s/n);
+			
+			conn.close();
+			
+			return m;
+			
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			throw new RuntimeException("SQL Error");
+		}
+	}
+
 }
