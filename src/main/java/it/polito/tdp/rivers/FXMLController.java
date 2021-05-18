@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 
 import javax.annotation.processing.RoundEnvironment;
 
-import it.polito.tdp.model.Measurements;
+import it.polito.tdp.rivers.model.Measurements;
 import it.polito.tdp.rivers.model.Model;
 import it.polito.tdp.rivers.model.River;
 import javafx.event.ActionEvent;

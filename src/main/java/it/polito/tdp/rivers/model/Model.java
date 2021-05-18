@@ -2,7 +2,6 @@ package it.polito.tdp.rivers.model;
 
 import java.util.List;
 
-import it.polito.tdp.model.Measurements;
 import it.polito.tdp.rivers.db.RiversDAO;
 
 public class Model {

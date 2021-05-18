@@ -3,7 +3,7 @@ package it.polito.tdp.rivers.db;
 import java.util.LinkedList;
 import java.util.List;
 
-import it.polito.tdp.model.Measurements;
+import it.polito.tdp.rivers.model.Measurements;
 import it.polito.tdp.rivers.model.River;
 
 import java.sql.Connection;
@@ -53,14 +53,15 @@ public class RiversDAO {
 			
 			Measurements m = new Measurements(r, null, null, 0, 0);
 			
-			if(res.last())
-				m.setEndDate(res.getDate("day").toLocalDate());
 			if(res.first())
-				m.setStartDate(res.getDate("day").toLocalDate());		
+				m.setStartDate(res.getDate("day").toLocalDate());
+			if(res.last())
+				m.setEndDate(res.getDate("day").toLocalDate());		
 			
-			int n = 1;
+			int n = 0;
 			float s = 0;
 			
+			res.beforeFirst();
 			while (res.next()) {
 				n++;
 				s += res.getFloat("flow");

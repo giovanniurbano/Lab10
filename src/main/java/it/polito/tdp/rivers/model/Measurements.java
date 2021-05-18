@@ -1,8 +1,6 @@
-package it.polito.tdp.model;
+package it.polito.tdp.rivers.model;
 
 import java.time.LocalDate;
-
-import it.polito.tdp.rivers.model.River;
 
 public class Measurements {
 	River river;
