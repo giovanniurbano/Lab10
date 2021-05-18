@@ -96,7 +96,7 @@ public class RiversDAO {
 			ResultSet res = st.executeQuery();
 
 			while (res.next()) {
-				flows.add(new Flow(res.getDate("day").toLocalDate(), res.getFloat("flow"), r));
+				flows.add(new Flow(res.getDate("day").toLocalDate(), (res.getFloat("flow")*3600*24), r));
 			}
 
 			conn.close();
