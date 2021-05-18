@@ -35,7 +35,7 @@ public class Simulator {
 		this.k = k;
 	}
 	public void setfMed(float f) {
-		this.fMed = f;
+		this.fMed = f*3600*24; //conversione di fMed da m^3/s a m^3/gg
 	}
 	public void setR(River r) {
 		this.r = r;
