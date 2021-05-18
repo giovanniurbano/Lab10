@@ -18,4 +18,8 @@ public class Model {
 	public Measurements getMeasurementsInfo(River r) {
 		return this.dao.getMeasurementsInfo(r);
 	}
+
+	public List<Flow> getFlows(River r) {
+		return this.dao.getFlows(r);
+	}
 }	
